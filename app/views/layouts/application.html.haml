@@ -1,0 +1,80 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title= content_for(:title) || "RSVP app"
+    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
+    %meta{:content => "yes", :name => "apple-mobile-web-app-capable"}/
+    %meta{:content => "yes", :name => "mobile-web-app-capable"}/
+    = csrf_meta_tags
+    = csp_meta_tag
+    = yield :head
+    %link{:href => "/icon.png", :rel => "icon", :type => "image/png"}/
+    %link{:href => "/icon.svg", :rel => "icon", :type => "image/svg+xml"}/
+    %link{:href => "/icon.png", :rel => "apple-touch-icon"}/
+    = stylesheet_link_tag :app, "data-turbo-track": "reload"
+    = javascript_importmap_tags
+  %body
+    - if flash[:error]
+      .notification.is-danger
+        = flash[:error]
+    - if flash[:alert]
+      .notification.is-danger
+        = flash[:alert]
+    - if flash[:success]
+      .notification.is-success
+        = flash[:success]
+    #home.header-wrapper
+      %section.hero
+        %nav.navbar.is-fixed-top.is-transparent.is-hidden-desktop
+          .navbar-brand
+            .navbar-burger.burger{"data-target" => "mobile-nav"}
+              %span
+              %span
+              %span
+          #mobile-nav.navbar-menu
+            .navbar-end
+              .navbar-item
+                %a.navbar-item{:href => "/"}
+                  Home
+              .navbar-item
+                %a.navbar-item{:href => "/invite/event"}
+                  Event details
+              .navbar-item
+                %a.navbar-item{:href => "/invite/confirm"}
+                  RSVP
+              .navbar-item
+                %a.navbar-item{:href => "/invite/gifts"}
+                  Gifts
+              .navbar-item
+                %a.navbar-item{:href => "/invite/faq"}
+                  FAQ
+              - if Current.session && Current.session.user.admin?
+                .navbar-item
+                  %a.navbar-item{:href => "/admin/list"}
+                    Admin
+        .hero-body
+          .container.has-text-centered
+            %h2.title RSVP
+            %h1.subtitle.profession welcome to our event
+        .hero-foot
+          .hero-foot--wrapper
+            .columns
+              .column.is-12.hero-menu-desktop.has-text-centered.is-fixed-top
+                %ul
+                  %li
+                    %a{:href => "/"} Home
+                  %li
+                    %a{:href => "/invite/event"} Event details
+                  %li
+                    %a{:href => "/invite/confirm"} RSVP
+                  %li
+                    %a{:href => "/invite/gifts"} Gifts
+                  %li
+                    %a{:href => "/invite/faq"} FAQ
+                  - if Current.session && Current.session.user.admin?
+                    %li
+                      %a{:href => "/admin/list"} Admin
+    .section#main-content
+      .container
+        = yield
