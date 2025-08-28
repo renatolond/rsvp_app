@@ -1,0 +1,17 @@
+.box
+  = form_tag("/invite/send_confirm", method: "post") do |f|
+    .field
+      = label_tag(:attending, "Attending? *", class: :label)
+      .control
+        .radios
+          = label_tag(:attending_yes, class: "radio") do
+            = radio_button_tag(:attending, "yes")
+            Yes
+          = label_tag(:attending_no, class: "radio") do
+            = radio_button_tag(:attending, "no")
+            No
+      - if @error && @attending.blank?
+        %p.help.is-danger This field is required
+    .field
+      .control
+        = submit_tag("Submit", class: "button is-primary")

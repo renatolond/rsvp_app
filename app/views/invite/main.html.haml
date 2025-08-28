@@ -1,0 +1,29 @@
+- if Current.session.user.attending.blank?
+  %article.message.is-warning
+    .message-header
+      %p Reminder
+      %button.delete{"aria-label":"delete"}
+    .message-body
+      We still haven't received your
+      <strong>RSVP</strong>. Please fill out the form so we know if we should expect you or not.
+- else
+  %article.message.is-success
+    .message-header
+      %p We got your RSVP
+      %button.delete{"aria-label":"delete"}
+    .message-body
+      It can still be changed via the RSVP tab if needed.<br/>
+      You answered: "#{Current.session.user.attending}" to attending<br />
+%h1 Invite#main
+.content
+  %h1 You're invited, #{Current.session.user.name}!
+
+  %p Please confirm your presence, or absence, by clicking on the <b>RSVP</b> tab above.
+
+  %p Practical details (place & time) can be found on the Event details tab, also above.
+
+  %p If you want to offer us a little gift, you can check out the Gift tab.
+
+  %p Finally, we have a few common questions answered in the FAQ tab.
+
+  %p Hope to see you soon!

@@ -1,0 +1,9 @@
+= turbo_stream.remove_all ".notification"
+- if @error
+  = turbo_stream.replace_all ".box" do
+    = render "form"
+- else
+  = turbo_stream.before_all ".content" do
+    .notification.is-primary
+      We got your response loud and clear! Thanks for answering ;)<br />
+      You answered: "#{@attending}" to attending<br />
