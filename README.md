@@ -1,24 +1,23 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+RSVP app is an easy-to-deploy rails app meant as a solution for simple RSVPs. With a minimal set of functionalities, the idea is to allow guests to respond to an event and see information about it.
 
-Things you may want to cover:
+It is not meant as a complex solution, it avoids all complexity of sending emails and more advanced functionality instead focusing on a solution that depends on nothing and can be easily deployed on a VPS.
 
-* Ruby version
+It uses Bulma as the CSS framework and vanilla js for minimal javascript functionality. It should work well on mobile devices as well as desktop. It is partly based off https://bulmatemplates.github.io/bulma-templates/templates/showcase.html
 
-* System dependencies
+You need to edit the views in app/views/invite to do any changes you wish.
 
-* Configuration
+The users login with a code which both identify them uniquelly and allow them to login. You should generate hard-to-guess codes for security, think of using a passphrase generator with a large-enough entropy.
 
-* Database creation
+# Development
 
-* Database initialization
+You need to install ruby (the version in `.ruby-version`) and then you can install dependencies and run the project with `./bin/setup`.
 
-* How to run the test suite
+It uses a sqlite database and nothig else, so you don't need to have any other dependencies to run it.
 
-* Services (job queues, cache servers, search engines, etc.)
+# Deployment
 
-* Deployment instructions
+You can deploy this as you would any other rails app.
 
-* ...
+If you are comfortable with docker, there's a Dockerfile available which will build a container ready to be executed. It needs to be served over HTTPS.
