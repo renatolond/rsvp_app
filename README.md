@@ -10,6 +10,10 @@ You need to edit the views in app/views/invite to do any changes you wish.
 
 The users login with a code which both identify them uniquelly and allow them to login. You should generate hard-to-guess codes for security, think of using a passphrase generator with a large-enough entropy.
 
+![Screenshot of the event details page](event_details.png)
+![Screenshot of the event details page on a mobile](event_details_mobile_1.png)
+![Screenshot of the event details page on a mobile with the burger menu open](event_details_mobile_2.png)
+
 # Development
 
 You need to install ruby (the version in `.ruby-version`) and then you can install dependencies and run the project with `./bin/setup`.
