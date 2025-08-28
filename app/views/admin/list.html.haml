@@ -1,0 +1,16 @@
+.content
+  %h1 User list
+  %table.table
+    %thead
+      %tr
+        %th Name
+        %th Attending?
+        %th Last login
+        %th Admin?
+    %tbody
+      - User.all.each do |u|
+        %tr
+          %td #{u.name}
+          %td #{u.attending}
+          %td #{u.sessions.max_by { |v| v.updated_at }&.updated_at || "Never" }
+          %td #{u.admin}
